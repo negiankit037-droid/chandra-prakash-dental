@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr. Chandra Prakash | Luxury Dental Clinic Lucknow</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Ultra premium fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---------- ULTRA LUXURY COLOR PALETTE ---------- */
+        :root {
+            --obsidian: #0B121C;        /* deep black-blue */
+            --rich-gold: #C6A15B;        /* warm antique gold */
+            --ivory: #F5EFE6;             /* soft off-white */
+            --champagne: #EADBC6;          /* light cream */
+            --graphite: #1E2A3A;           /* dark accent */
+            --shadow-heavy: 0 30px 50px -20px rgba(0,0,0,0.6);
+            --glass-edge: 1px solid rgba(198, 161, 91, 0.25);
+            --text-dim: #B8B2A7;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--obsidian);
+            color: var(--ivory);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        /* ----- CUSTOM SCROLLBAR (Gold) ----- */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--obsidian); }
+        ::-webkit-scrollbar-thumb { background: var(--rich-gold); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a88544; }
+
+        /* ----- SUBTLE TEXTURE OVERLAY (damask pattern) ----- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PHBhdGggZD0iTTcwIDIwbDEwIDEwLTEwIDEwLTEwLTEweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzZBMTVCIiBzdHJva2Utd2lkdGg9IjAuNCIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ----- NAVIGATION (glassmorphic) ----- */
+        .navbar {
+            padding: 25px 0;
+            background: rgba(11, 18, 28, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: var(--glass-edge);
+            transition: all 0.4s ease;
+        }
+        .nav-logo { 
+            font-size: 2.2rem; 
+            color: var(--ivory) !important; 
+            text-decoration: none; 
+            letter-spacing: 4px;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+        .nav-logo span { 
+            color: var(--rich-gold); 
+            font-weight: 700;
+            margin-left: 4px;
+        }
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--rich-gold), transparent);
+            transition: width 0.5s ease;
+        }
+        .nav-logo:hover::after { width: 100%; }
+        .nav-link {
+            color: var(--ivory) !important;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0 20px;
+            font-weight: 500;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--rich-gold);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::before { width: 100%; }
+        .nav-link:hover { color: var(--rich-gold) !important; }
+
+        /* ----- HERO SECTION (opulent) ----- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at 80% 40%, rgba(198, 161, 91, 0.15) 0%, var(--obsidian) 80%);
+            padding-top: 100px;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48cGF0aCBkPSJNMzAgMTBhMTAgMTAgMCAwIDEgMjAgMCAxMCAxMCAwIDAgMS0yMCAweiIgZmlsbD0iI0M2QTE1QiIgb3BhY2l0eT0iMC4wMjUiLz48L3N2Zz4=');
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .hero-title { 
+            font-size: clamp(3.5rem, 12vw, 7rem); 
+            line-height: 0.9; 
+            margin-bottom: 25px; 
+            color: var(--ivory);
+            text-shadow: 0 15px 30px rgba(0,0,0,0.7);
+        }
+        .hero-sub { 
+            color: var(--rich-gold); 
+            letter-spacing: 8px; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            font-size: 0.9rem; 
+            display: inline-block;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--rich-gold);
+            padding-left: 20px;
+        }
+        .hero .lead { 
+            color: var(--champagne) !important; 
+            font-weight: 300;
+            font-size: 1.3rem;
+            max-width: 650px;
+        }
+
+        /* ----- BUTTONS (3D, premium) ----- */
+        .btn-luxury {
+            background: linear-gradient(145deg, var(--rich-gold), #a88544);
+            color: var(--obsidian);
+            padding: 18px 48px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            border-radius: 0;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+            border: none;
+            box-shadow: 0 20px 30px -10px rgba(198, 161, 91, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.8s, height 0.8s;
+            z-index: -1;
+        }
+        .btn-luxury:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        .btn-luxury:hover { 
+            background: linear-gradient(145deg, #b8944a, #9e793d);
+            color: var(--ivory);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 30px 40px -10px rgba(198, 161, 91, 0.5);
+        }
+
+        .btn-outline-luxury {
+            background: transparent;
+            color: var(--rich-gold);
+            border: 1px solid var(--rich-gold);
+            padding: 18px 48px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            border-radius: 0;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+        .btn-outline-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--rich-gold), var(--obsidian));
+            transition: left 0.4s;
+            z-index: -1;
+        }
+        .btn-outline-luxury:hover::before { left: 0; }
+        .btn-outline-luxury:hover {
+            color: var(--ivory);
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        /* ----- SERVICE CARDS (glass, depth) ----- */
+        .category-title { 
+            color: var(--rich-gold); 
+            border-bottom: 2px solid rgba(198, 161, 91, 0.3); 
+            padding-bottom: 15px; 
+            margin-bottom: 50px; 
+            margin-top: 70px; 
+            letter-spacing: 5px; 
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .service-card {
+            background: rgba(30, 42, 58, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: var(--glass-edge);
+            padding: 45px 30px;
+            transition: 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            background: linear-gradient(45deg, transparent, rgba(198, 161, 91, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.6s;
+            pointer-events: none;
+        }
+        .service-card:hover::after { opacity: 1; }
+        .service-card:hover { 
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(30, 42, 58, 0.8);
+            box-shadow: 0 40px 60px -15px black, 0 0 0 2px rgba(198, 161, 91, 0.2);
+        }
+        .icon-box { 
+            font-size: 3rem; 
+            color: var(--rich-gold); 
+            margin-bottom: 30px; 
+            transition: 0.4s;
+        }
+        .service-card:hover .icon-box {
+            transform: scale(1.1) rotate(3deg);
+            color: var(--ivory);
+        }
+        .service-card h3 { 
+            font-size: 1.6rem; 
+            margin-bottom: 15px; 
+            color: var(--ivory); 
+            transition: 0.3s;
+        }
+        .service-card:hover h3 { color: var(--rich-gold); }
+        .service-card p { 
+            font-size: 0.95rem; 
+            color: var(--text-dim); 
+            font-weight: 300; 
+            margin-bottom: 0; 
+        }
+
+        /* ----- CONTACT SECTION (rich dark) ----- */
+        .contact-section { 
+            padding: 120px 0; 
+            background: linear-gradient(145deg, #0B121C, #04090f);
+            border-top: 2px solid rgba(198, 161, 91, 0.3);
+            position: relative;
+        }
+        .info-label { 
+            color: var(--rich-gold); 
+            font-size: 0.8rem; 
+            letter-spacing: 4px; 
+            margin-bottom: 15px; 
+            display: block; 
+            font-weight: 500;
+        }
+        .info-val { 
+            font-size: 1.3rem; 
+            font-weight: 300; 
+            margin-bottom: 45px; 
+            color: var(--ivory);
+            border-left: 3px solid var(--rich-gold);
+            padding-left: 20px;
+        }
+        .map-frame { 
+            height: 450px; 
+            border: 3px solid var(--rich-gold); 
+            opacity: 0.9; 
+            transition: 0.6s; 
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+        }
+        .map-frame:hover { 
+            opacity: 1; 
+            border-color: var(--ivory);
+            transform: scale(1.02);
+        }
+
+        /* ----- WHATSAPP FLOAT (golden edge) ----- */
+        .wa-float {
+            position: fixed;
+            bottom: 40px; right: 40px;
+            width: 70px; height: 70px;
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 2.2rem;
+            z-index: 1000;
+            box-shadow: 0 20px 30px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            transition: 0.4s;
+            border: 2px solid var(--rich-gold);
+        }
+        .wa-float:hover { 
+            transform: scale(1.2) rotate(5deg); 
+            border-color: white;
+        }
+
+        /* ----- MODAL (luxe) ----- */
+        .modal-content {
+            background: var(--obsidian);
+            border: 2px solid var(--rich-gold);
+            border-radius: 24px;
+            box-shadow: 0 60px 90px -30px black;
+        }
+        .modal-header {
+            border-bottom: 1px solid rgba(198, 161, 91, 0.3);
+            padding: 1.8rem;
+            background: rgba(11, 18, 28, 0.9);
+        }
+        .modal-title {
+            color: var(--rich-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+        }
+        .btn-close { filter: invert(1); opacity: 0.8; }
+        .payment-img {
+            border: 3px dashed var(--rich-gold);
+            border-radius: 12px;
+            background: #1f2a36;
+        }
+        .instruction-text { color: var(--ivory); }
+        .instruction-sub { color: var(--text-dim); }
+
+        /* ----- FOOTER (Ankit credit) ----- */
+        footer {
+            background: #04090f;
+            border-top: 1px solid rgba(198, 161, 91, 0.2) !important;
+            color: var(--text-dim);
+            padding: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero { text-align: center; }
+            .hero-sub { border-left: none; padding-left: 0; }
+            .btn-luxury, .btn-outline-luxury { padding: 14px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION (no logo image, no social icons) -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="nav-logo" href="#">CHANDRA PRAKASH<span>DENTAL</span></a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars-staggered" style="color: var(--ivory);"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Treatments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+                        <a href="tel:+919415767173" class="btn-luxury">CALL NOW</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO (no YouTube/Instagram buttons) -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-duration="1400">
+                    <span class="hero-sub">LUXURY DENTAL SUITE LUCKNOW</span>
+                    <h1 class="hero-title">Where Art <br>Meets Precision.</h1>
+                    <p class="lead mb-5">Experience uncompromising elegance and advanced dental care in an environment designed for your comfort.</p>
+                    <div class="d-flex flex-wrap gap-4 justify-content-center justify-content-lg-start">
+                        <a href="https://wa.me/919415767173" class="btn-luxury">BOOK APPOINTMENT</a>
+                        <a href="#" class="btn-outline-luxury" data-bs-toggle="modal" data-bs-target="#consultModal">ONLINE CONSULT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES (same exquisite list) -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5" style="color: var(--ivory);">The Art of Dentistry</h2>
+                <p class="text-muted" style="color: var(--text-dim) !important;">Precision. Aesthetics. Care.</p>
+            </div>
+
+            <h4 class="category-title" data-aos="fade-right">01. Aesthetic & Cosmetic</h4>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up"><div class="service-card"><i class="fa-solid fa-wand-sparkles icon-box"></i><h3>Teeth Whitening</h3><p>Radiant, instant brightness.</p></div></div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="service-card"><i class="fa-solid fa-crown icon-box"></i><h3>Veneers & Crowns</h3><p>Flawless porcelain artistry.</p></div></div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="service-card"><i class="fa-solid fa-gem icon-box"></i><h3>Teeth Reshaping</h3><p>Perfect contour & harmony.</p></div></div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="service-card"><i class="fa-solid fa-face-smile icon-box"></i><h3>Bonding</h3><p>Seamless repairs.</p></div></div>
+            </div>
+
+            <h4 class="category-title" data-aos="fade-right">02. Advanced & Surgical</h4>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up"><div class="service-card"><i class="fa-solid fa-bolt icon-box"></i><h3>Laser Dentistry</h3><p>Painless, needle-free.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="service-card"><i class="fa-solid fa-microscope icon-box"></i><h3>Root Canals</h3><p>Microscopic precision.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="service-card"><i class="fa-solid fa-screwdriver icon-box"></i><h3>Dental Implants</h3><p>Permanent restoration.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up"><div class="service-card"><i class="fa-solid fa-scalpel icon-box"></i><h3>Oral Surgery</h3><p>Expert surgical care.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="service-card"><i class="fa-solid fa-bridge icon-box"></i><h3>Dentures & Bridges</h3><p>Functional & natural.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="service-card"><i class="fa-solid fa-x-ray icon-box"></i><h3>Digital X-Ray</h3><p>High-definition diagnosis.</p></div></div>
+            </div>
+
+            <h4 class="category-title" data-aos="fade-right">03. General Care</h4>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up"><div class="service-card"><i class="fa-solid fa-magnifying-glass icon-box"></i><h3>Checkups</h3><p>Comprehensive exams.</p></div></div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="service-card"><i class="fa-solid fa-sparkles icon-box"></i><h3>Teeth Cleaning</h3><p>Deep hygiene.</p></div></div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="service-card"><i class="fa-solid fa-child icon-box"></i><h3>Pediatrics</h3><p>Gentle children's care.</p></div></div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300"><div class="service-card"><i class="fa-solid fa-shield-virus icon-box"></i><h3>Fillings & Sealants</h3><p>Protective restorations.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up"><div class="service-card"><i class="fa-solid fa-shield-halved icon-box"></i><h3>Mouth Guards</h3><p>Custom protection.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100"><div class="service-card"><i class="fa-solid fa-tooth icon-box"></i><h3>Extractions</h3><p>Painless removals.</p></div></div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"><div class="service-card"><i class="fa-solid fa-globe icon-box"></i><h3>Online Booking</h3><p>24/7 scheduling.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT with clinic details -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <h2 class="display-5 mb-5" style="color: var(--ivory);">The Practice</h2>
+                    <span class="info-label">ADDRESS</span>
+                    <p class="info-val">B-block, Suraj Deep Complex, 1-Joppling Road,<br>Lucknow, Uttar Pradesh 226001</p>
+                    
+                    <span class="info-label">HOURS</span>
+                    <p class="info-val">Monday – Saturday: 11:00 AM — 08:00 PM<br>Sunday: Closed</p>
+                    
+                    <span class="info-label">CONTACT</span>
+                    <p class="info-val">+91 94157 67173</p>
+                </div>
+                <div class="col-lg-7" data-aos="zoom-in">
+                    <div class="map-frame">
+                        <iframe src="https://maps.google.com/maps?q=B-block%2C%20Suraj%20Deep%20Complex%2C%201-Joppling%20Road%2C%20Lucknow%2C%20Uttar%20Pradesh%20226001&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ONLINE CONSULT MODAL -->
+    <div class="modal fade" id="consultModal" tabindex="-1" aria-labelledby="consultModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="consultModalLabel">📋 Online Consultation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="pay.jpg" alt="Payment QR" class="payment-img img-fluid" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x400?text=Pay+QR';">
+                    <p class="instruction-text">₹200 भुगतान करने के बाद स्क्रीनशॉट व्हाट्सएप पर भेजें</p>
+                    <p class="instruction-sub">After paying ₹200, send screenshot on WhatsApp</p>
+                    <a href="https://wa.me/919415767173?text=Hello%2C%20I%20have%20paid%20%E2%82%B9200%20for%20online%20consultation.%20Please%20find%20the%20payment%20screenshot%20attached." class="btn-luxury" target="_blank"><i class="fab fa-whatsapp me-2"></i>Send Screenshot</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/919415767173" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER with Ankit credit -->
+    <footer class="py-4 text-center">
+        <p class="small mb-0" style="opacity: 0.8;">© 2026 DR. CHANDRA PRAKASH DENTAL CLINIC | CREATED BY ANKIT</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+        window.onscroll = function() {
+            let nav = document.querySelector(".navbar");
+            if (window.pageYOffset > 50) nav.style.padding = "15px 0";
+            else nav.style.padding = "25px 0";
+        };
+    </script>
+</body>
+</html>
