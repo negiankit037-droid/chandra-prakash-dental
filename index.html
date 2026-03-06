@@ -58,17 +58,24 @@
             z-index: 9999;
         }
 
-        /* ----- NAVIGATION (glassmorphic) ----- */
+        /* ----- NAVIGATION (glassmorphic, smaller, hide on scroll) ----- */
         .navbar {
-            padding: 25px 0;
+            padding: 15px 0;  /* reduced from 25px */
             background: rgba(11, 18, 28, 0.85);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: var(--glass-edge);
-            transition: all 0.4s ease;
+            transition: transform 0.3s ease, padding 0.3s ease;
+            transform: translateY(0);
+        }
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+        .navbar.small {
+            padding: 8px 0;  /* even smaller when scrolled but still visible before hide */
         }
         .nav-logo { 
-            font-size: 2.2rem; 
+            font-size: 1.8rem;  /* reduced from 2.2rem */
             color: var(--ivory) !important; 
             text-decoration: none; 
             letter-spacing: 4px;
@@ -94,10 +101,10 @@
         .nav-logo:hover::after { width: 100%; }
         .nav-link {
             color: var(--ivory) !important;
-            font-size: 0.8rem;
+            font-size: 0.75rem;  /* slightly smaller */
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin: 0 20px;
+            margin: 0 15px;
             font-weight: 500;
             position: relative;
             transition: 0.3s;
@@ -164,7 +171,7 @@
         .btn-luxury {
             background: linear-gradient(145deg, var(--rich-gold), #a88544);
             color: var(--obsidian);
-            padding: 18px 48px;
+            padding: 16px 42px;  /* slightly smaller */
             font-weight: 600;
             letter-spacing: 3px;
             border-radius: 0;
@@ -207,7 +214,7 @@
             background: transparent;
             color: var(--rich-gold);
             border: 1px solid var(--rich-gold);
-            padding: 18px 48px;
+            padding: 16px 42px;
             font-weight: 600;
             letter-spacing: 3px;
             border-radius: 0;
@@ -399,14 +406,15 @@
         @media (max-width: 768px) {
             .hero { text-align: center; }
             .hero-sub { border-left: none; padding-left: 0; }
-            .btn-luxury, .btn-outline-luxury { padding: 14px 30px; }
+            .btn-luxury, .btn-outline-luxury { padding: 12px 24px; }
+            .nav-logo { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- NAVIGATION (no logo image, no social icons) -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar" id="mainNavbar">
         <div class="container">
             <a class="nav-logo" href="#">CHANDRA PRAKASH<span>DENTAL</span></a>
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -537,11 +545,32 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1200, once: true });
-        window.onscroll = function() {
-            let nav = document.querySelector(".navbar");
-            if (window.pageYOffset > 50) nav.style.padding = "15px 0";
-            else nav.style.padding = "25px 0";
-        };
+
+        // Navbar hide on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('mainNavbar');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Add/remove small class based on scroll position (for even smaller padding)
+            if (scrollTop > 50) {
+                navbar.classList.add('small');
+            } else {
+                navbar.classList.remove('small');
+            }
+
+            // Determine scroll direction
+            if (scrollTop > lastScrollTop && scrollTop > 80) {
+                // Scrolling down & past threshold -> hide navbar
+                navbar.classList.add('hidden');
+            } else {
+                // Scrolling up -> show navbar
+                navbar.classList.remove('hidden');
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile or negative
+        });
     </script>
 </body>
 </html>
